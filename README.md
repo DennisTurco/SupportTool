@@ -2,8 +2,8 @@
 
 ## Description
 
-- dasdas
-- asdasdas
+- line 1
+- line 2
 
 ## Platforms
 
@@ -26,9 +26,13 @@
 ## Authors
 
 - [DennisTurco](https://www.github.com/DennisTurco)
-- [FrancescoFraFra](https://www.github.com/)
-- [Donatelloη﷼](https://www.github.com/)
+- [Shard Hardware & Software](https://www.github.com/ShardPC)
+- [Donatello La Rocca](https://www.github.com/)
 
 ## Support
 
-For support, email: [dennisturco@gmail.com](dennisturco@gmail.com)
+For support: 
+- email: [dennisturco@gmail.com](dennisturco@gmail.com)
+- email: [software@shardpc.it](software@shardpc.it)
+- email: [dennisturco@gmail.com](dennisturco@gmail.com)
+
