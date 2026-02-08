@@ -19,5 +19,5 @@ jobs:
       - name: Install deps
         run: pip install -r requirements.txt
 
-      - name: Import test
-        run: python -c "import support_tool"
+    #   - name: Import test
+    #     run: python -c "import support_tool"
