@@ -1,0 +1,23 @@
+name: Build Check
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Import test
+        run: python -c "import support_tool"

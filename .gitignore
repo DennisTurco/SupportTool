@@ -1,0 +1,12 @@
+# for python project
+__pycache__/
+*.db
+*.sqlite
+.env
+.venv
+.idea
+.vscode
+logs/
+
+# for testing stuff
+/prove/
