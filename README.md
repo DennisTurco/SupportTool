@@ -51,6 +51,18 @@ pre-commit run --all-files
 python main.py
 ```
 
+## Tecnical Documentation
+
+### Database
+
+```mermaid
+graph TD
+  A(((Application Startup))) --> B[Create database folder]
+  B --> C[Migration execution]
+```
+
+$\rightarrow$ To obtain the database connection: `Database.get_connection(DatabaseType.PRODUCTION)`
+
 ## Platforms
 
 | Platform | Availability |
