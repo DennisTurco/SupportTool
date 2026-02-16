@@ -1,9 +1,8 @@
 from database.database_initializer import DatabaseInitializer
-from database.enums.database_type import DatabaseType
 from repositories.operator_repository import OperatorRepository
 
 if __name__ == "__main__":
-    DatabaseInitializer.init_database(DatabaseType.PRODUCTION)
+    DatabaseInitializer.init_database()
 
     while True:
         email = str(input("Inserisci l'Email: "))

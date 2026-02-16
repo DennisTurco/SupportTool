@@ -45,6 +45,12 @@ You only need to do this once.
 pre-commit run --all-files
 ```
 
+To run all the tests:
+
+```bash
+python -m pytest
+```
+
 ### 5. Run the application
 
 ```bash

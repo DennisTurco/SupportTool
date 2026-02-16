@@ -5,27 +5,22 @@ from config.settings import (
     MIGRATIONS_DIR,
     PRODUCTION_DATABASE_DIR,
     PRODUCTION_DATABASE_PATH,
-    TEST_DATABASE_DIR,
-    TEST_DATABASE_PATH,
 )
-from database.enums.database_type import DatabaseType
 
 
 class DatabaseInitializer:
     @staticmethod
-    def init_database(database: DatabaseType):
-        database_path = DatabaseInitializer.__get_path_by_type(database)
-        database_dir = DatabaseInitializer.__get_dir_by_type(database)
-        DatabaseInitializer.__create_database_if_missing(database_dir)
-        DatabaseInitializer.__run_migrations(database_path)
+    def init_database():
+        DatabaseInitializer.__create_database_if_missing()
+        DatabaseInitializer.__run_migrations()
 
     @staticmethod
-    def __create_database_if_missing(database_dir: str):
-        os.makedirs(database_dir, exist_ok=True)
+    def __create_database_if_missing():
+        os.makedirs(PRODUCTION_DATABASE_DIR, exist_ok=True)
 
     @staticmethod
-    def __run_migrations(database_path: str):
-        with sqlite3.connect(database_path) as conn:
+    def __run_migrations():
+        with sqlite3.connect(PRODUCTION_DATABASE_PATH) as conn:
             cursor = conn.cursor()
 
             DatabaseInitializer.__read_and_execute_sql_script(cursor, os.path.join(MIGRATIONS_DIR, "001_schema.sql"))
@@ -38,17 +33,3 @@ class DatabaseInitializer:
         with open(migration, encoding="utf-8") as file:
             script = file.read()
         cursor.executescript(script)
-
-    @staticmethod
-    def __get_path_by_type(database: DatabaseType):
-        if database == DatabaseType.PRODUCTION:
-            return PRODUCTION_DATABASE_PATH
-        elif database == DatabaseType.TEST:
-            return TEST_DATABASE_PATH
-
-    @staticmethod
-    def __get_dir_by_type(database: DatabaseType):
-        if database == DatabaseType.PRODUCTION:
-            return PRODUCTION_DATABASE_DIR
-        elif database == DatabaseType.TEST:
-            return TEST_DATABASE_DIR
