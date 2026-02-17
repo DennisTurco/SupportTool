@@ -1,12 +1,11 @@
 from database.database import Database
-from database.enums.database_type import DatabaseType
 from models.operator import Operator
 
 
 class OperatorRepository:
     @staticmethod
     def get_operator_by_email_and_password(email: str, password: str):
-        conn = Database.get_connection(DatabaseType.PRODUCTION)
+        conn = Database.get_connection()
         cur = conn.cursor()
         query = """
             SELECT
@@ -19,7 +18,7 @@ class OperatorRepository:
             FROM
                 Operators
             WHERE
-                Email = ? AND Password = ? 
+                Email = ? AND Password = ?
         """
         credentials = (email, password)
         cur.execute(query, credentials)
