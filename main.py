@@ -1,15 +1,14 @@
+from PySide6.QtWidgets import QApplication
+
 from database.database_initializer import DatabaseInitializer
-from repositories.operator_repository import OperatorRepository
+from windows.login_window import LoginWindow
 
 if __name__ == "__main__":
     DatabaseInitializer.init_database()
 
-    while True:
-        email = str(input("Inserisci l'Email: "))
-        password = str(input("Inserisci la Password: "))
-        operator = OperatorRepository.get_operator_by_email_and_password(email, password)
-        if operator is None:
-            print("Email o Password Errati")
-        else:
-            print(operator.name)
-            break
+    app = QApplication()
+
+    login = LoginWindow()
+    login.show()
+
+    app.exec()
