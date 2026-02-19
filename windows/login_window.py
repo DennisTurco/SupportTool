@@ -48,11 +48,10 @@ class LoginWindow:
         dialog.exec()
 
     def show_hide_password(self):
+        password_line_edit = self.window.passwordText
         if not self.password_visible:
-            password_line_edit = self.window.passwordText
             password_line_edit.setEchoMode(QLineEdit.EchoMode.Normal)
             self.password_visible = True
         else:
-            password_line_edit = self.window.passwordText
             password_line_edit.setEchoMode(QLineEdit.EchoMode.Password)
             self.password_visible = False
