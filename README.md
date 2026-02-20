@@ -42,7 +42,7 @@ You only need to do this once.
 (Optional) Run all checks manually:
 
 ```bash
-pre-commit run --all-files
+pre-commit run --all-files; ruff check . --fix; ruff format
 ```
 
 To run all the tests:

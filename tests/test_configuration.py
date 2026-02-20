@@ -13,6 +13,7 @@ configs = """
 
     [LOGGING]
     log_level = DEBUG
+    log_folder = folder
     log_file = test.log
     log_format = format
 """
@@ -57,6 +58,11 @@ def test_configuration_log_level_read(tmp_path):
 
 
 def test_configuration_log_file_read(tmp_path):
+    config = __get_config_file(tmp_path)
+    assert config.log_folder == "folder"
+
+
+def test_configuration_log_folder_read(tmp_path):
     config = __get_config_file(tmp_path)
     assert config.log_file == "test.log"
 
