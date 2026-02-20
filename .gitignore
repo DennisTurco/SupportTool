@@ -13,3 +13,4 @@ logs/
 /prove/
 /data/
 .pytest_cache/
+.coverage

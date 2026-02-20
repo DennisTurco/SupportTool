@@ -3,3 +3,4 @@ pre-commit
 ruff
 pytest
 pytest-mock
+pytest-cov
