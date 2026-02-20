@@ -11,7 +11,10 @@ repos:
     hooks:
       - id: pytest
         name: pytest
-        entry: python -m pytest
-        language: system
-        types: [python]
+        entry: python -m pytest --cov=config --cov-report=term-missing
+        language: python
+        additional_dependencies:
+            - pytest
+            - pytest-cov
+            - pytest-mock
         pass_filenames: false

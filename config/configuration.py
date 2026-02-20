@@ -42,3 +42,11 @@ class Configuration:
     @property
     def log_level(self):
         return self._config.get("LOGGING", "log_level")
+
+    @property
+    def log_file(self):
+        return self._config.get("LOGGING", "log_file")
+
+    @property
+    def log_format(self):
+        return self._config.get("LOGGING", "log_format")
