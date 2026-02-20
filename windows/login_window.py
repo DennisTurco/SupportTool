@@ -4,6 +4,7 @@ from PySide6.QtUiTools import QUiLoader
 from PySide6.QtWidgets import QLineEdit, QMessageBox
 
 from config.configuration import Configuration
+from gui.main import MainWindow
 from repositories.operator_repository import OperatorRepository
 from services.log_service import LogService
 
@@ -38,6 +39,7 @@ class LoginWindow:
         else:
             self.logger.info(f"User {email} logged successfully")
             self.window.close()
+            MainWindow()
 
     def __credential_error(self):
         self.logger.info("Login credentials error")
