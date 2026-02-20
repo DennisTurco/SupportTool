@@ -16,7 +16,7 @@ class Configuration:
         if not os.path.exists(path):
             raise ConfigurationFileNotFound(f"Configuration file .ini not found in {path}")
 
-        self._config = configparser.ConfigParser()
+        self._config = configparser.ConfigParser(interpolation=None)
         self._config.read(path)
 
     @property
@@ -42,6 +42,10 @@ class Configuration:
     @property
     def log_level(self):
         return self._config.get("LOGGING", "log_level")
+
+    @property
+    def log_folder(self):
+        return self._config.get("LOGGING", "log_folder")
 
     @property
     def log_file(self):
