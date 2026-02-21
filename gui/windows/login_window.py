@@ -14,7 +14,7 @@ class LoginWindow:
         self.logger = LogService.get_logger(__name__)
 
         loader = QUiLoader()
-        file = QFile("./ui/LoginWindow.ui")
+        file = QFile("./gui/ui/LoginWindow.ui")
         file.open(QFile.ReadOnly)
         self.window = loader.load(file)
         file.close()
@@ -22,6 +22,10 @@ class LoginWindow:
         password_line_edit = self.window.passwordText
         password_line_edit.setEchoMode(QLineEdit.EchoMode.Password)
         self.password_visible = False
+
+        # only for debug the application
+        self.window.emailText.setText("admin@gmail.com")
+        self.window.passwordText.setText("asdasd123")
 
         self.window.loginBtn.clicked.connect(lambda: self.__login())
         self.window.show_hideBtn.clicked.connect(lambda: self.__show_hide_password())
