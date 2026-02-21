@@ -11,7 +11,9 @@
 # commercially, I recommend reading them on the official website:
 # https://doc.qt.io/qtforpython/licenses.html
 #
-from qt_core import QEasingCurve, QParallelAnimationGroup, QPropertyAnimation, QPushButton
+
+from PySide6.QtCore import QEasingCurve, QParallelAnimationGroup, QPropertyAnimation
+from PySide6.QtWidgets import QPushButton
 
 from .ui_main import UI_MainWindow
 

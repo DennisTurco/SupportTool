@@ -11,30 +11,13 @@
 # commercially, I recommend reading them on the official website:
 # https://doc.qt.io/qtforpython/licenses.html
 #
-
-
-# IMPORT PACKAGES AND MODULES
-
 import os
 
-# IMPORT FUNCTIONS
-from gui.core.functions import *
+from PySide6.QtCore import QEvent, QPoint, QRect, Qt
+from PySide6.QtGui import QColor, QPainter, QPixmap
+from PySide6.QtWidgets import QGraphicsDropShadowEffect, QLabel, QPushButton
 
-# IMPORT QT CORE
-from qt_core import (
-    QColor,
-    QEvent,
-    QGraphicsDropShadowEffect,
-    QLabel,
-    QPainter,
-    QPixmap,
-    QPoint,
-    QPushButton,
-    QRect,
-    Qt,
-)
-
-# CUSTOM LEFT MENU
+from gui.core.functions import Functions
 
 
 class PyLeftMenuButton(QPushButton):
@@ -69,11 +52,9 @@ class PyLeftMenuButton(QPushButton):
         self.setMinimumHeight(50)
         self.setObjectName(btn_id)
 
-        # APP PATH
         self._icon_path = Functions.set_svg_icon(icon_path)
         self._icon_active_menu = Functions.set_svg_icon(icon_active_menu)
 
-        # PROPERTIES
         self._margin = margin
         self._dark_one = dark_one
         self._dark_three = dark_three
@@ -93,23 +74,18 @@ class PyLeftMenuButton(QPushButton):
         self._is_active_tab = is_active_tab
         self._is_toggle_active = is_toggle_active
 
-        # TOOLTIP
         self._tooltip_text = tooltip_text
         self.tooltip = _ToolTip(app_parent, tooltip_text, dark_one, context_color, text_foreground)
         self.tooltip.hide()
 
-    # PAINT EVENT
-
     def paintEvent(self, event):
-        # PAINTER
         p = QPainter()
         p.begin(self)
         p.setRenderHint(QPainter.Antialiasing)
         p.setPen(Qt.NoPen)
         p.setFont(self.font())
 
-        # RECTANGLES
-        rect = QRect(4, 5, self.width(), self.height() - 10)
+        QRect(4, 5, self.width(), self.height() - 10)
         rect_inside = QRect(4, 5, self.width() - 8, self.height() - 10)
         rect_icon = QRect(0, 0, 50, self.height())
         rect_blue = QRect(4, 5, 20, self.height() - 10)
@@ -117,82 +93,63 @@ class PyLeftMenuButton(QPushButton):
         rect_text = QRect(45, 0, self.width() - 50, self.height())
 
         if self._is_active:
-            # DRAW BG BLUE
             p.setBrush(QColor(self._context_color))
             p.drawRoundedRect(rect_blue, 8, 8)
 
-            # BG INSIDE
             p.setBrush(QColor(self._bg_one))
             p.drawRoundedRect(rect_inside_active, 8, 8)
 
-            # DRAW ACTIVE
             icon_path = self._icon_active_menu
             app_path = os.path.abspath(os.getcwd())
             icon_path = os.path.normpath(os.path.join(app_path, icon_path))
             self._set_icon_color = self._icon_color_active
             self.icon_active(p, icon_path, self.width())
 
-            # DRAW TEXT
             p.setPen(QColor(self._set_text_active))
             p.drawText(rect_text, Qt.AlignVCenter, self.text())
 
-            # DRAW ICONS
             self.icon_paint(p, self._icon_path, rect_icon, self._set_icon_color)
 
         elif self._is_active_tab:
-            # DRAW BG BLUE
             p.setBrush(QColor(self._dark_four))
             p.drawRoundedRect(rect_blue, 8, 8)
 
-            # BG INSIDE
             p.setBrush(QColor(self._bg_one))
             p.drawRoundedRect(rect_inside_active, 8, 8)
 
-            # DRAW ACTIVE
             icon_path = self._icon_active_menu
             app_path = os.path.abspath(os.getcwd())
             icon_path = os.path.normpath(os.path.join(app_path, icon_path))
             self._set_icon_color = self._icon_color_active
             self.icon_active(p, icon_path, self.width())
 
-            # DRAW TEXT
             p.setPen(QColor(self._set_text_active))
             p.drawText(rect_text, Qt.AlignVCenter, self.text())
 
-            # DRAW ICONS
             self.icon_paint(p, self._icon_path, rect_icon, self._set_icon_color)
 
-        # NORMAL BG
         else:
             if self._is_toggle_active:
-                # BG INSIDE
                 p.setBrush(QColor(self._dark_three))
                 p.drawRoundedRect(rect_inside, 8, 8)
 
-                # DRAW TEXT
                 p.setPen(QColor(self._set_text_foreground))
                 p.drawText(rect_text, Qt.AlignVCenter, self.text())
 
-                # DRAW ICONS
                 if self._is_toggle_active:
                     self.icon_paint(p, self._icon_path, rect_icon, self._context_color)
                 else:
                     self.icon_paint(p, self._icon_path, rect_icon, self._set_icon_color)
             else:
-                # BG INSIDE
                 p.setBrush(QColor(self._set_bg_color))
                 p.drawRoundedRect(rect_inside, 8, 8)
 
-                # DRAW TEXT
                 p.setPen(QColor(self._set_text_foreground))
                 p.drawText(rect_text, Qt.AlignVCenter, self.text())
 
-                # DRAW ICONS
                 self.icon_paint(p, self._icon_path, rect_icon, self._set_icon_color)
 
         p.end()
-
-    # SET ACTIVE MENU
 
     def set_active(self, is_active):
         self._is_active = is_active
@@ -202,8 +159,6 @@ class PyLeftMenuButton(QPushButton):
 
         self.repaint()
 
-    # SET ACTIVE TAB MENU
-
     def set_active_tab(self, is_active):
         self._is_active_tab = is_active
         if not is_active:
@@ -212,28 +167,18 @@ class PyLeftMenuButton(QPushButton):
 
         self.repaint()
 
-    # RETURN IF IS ACTIVE MENU
-
     def is_active(self):
         return self._is_active
-
-    # RETURN IF IS ACTIVE TAB MENU
 
     def is_active_tab(self):
         return self._is_active_tab
 
-    # SET ACTIVE TOGGLE
-
     def set_active_toggle(self, is_active):
         self._is_toggle_active = is_active
-
-    # SET ICON
 
     def set_icon(self, icon_path):
         self._icon_path = icon_path
         self.repaint()
-
-    # DRAW ICON WITH COLORS
 
     def icon_paint(self, qp, image, rect, color):
         icon = QPixmap(image)
@@ -243,8 +188,6 @@ class PyLeftMenuButton(QPushButton):
         qp.drawPixmap((rect.width() - icon.width()) / 2, (rect.height() - icon.height()) / 2, icon)
         painter.end()
 
-    # DRAW ACTIVE ICON / RIGHT SIDE
-
     def icon_active(self, qp, image, width):
         icon = QPixmap(image)
         painter = QPainter(icon)
@@ -252,9 +195,6 @@ class PyLeftMenuButton(QPushButton):
         painter.fillRect(icon.rect(), self._bg_one)
         qp.drawPixmap(width - 5, 0, icon)
         painter.end()
-
-    # CHANGE STYLES
-    # Functions with custom styles
 
     def change_style(self, event):
         if event == QEvent.Enter:
@@ -278,24 +218,15 @@ class PyLeftMenuButton(QPushButton):
                 self._set_bg_color = self._dark_three
             self.repaint()
 
-    # MOUSE OVER
-    # Event triggered when the mouse is over the BTN
-
     def enterEvent(self, event):
         self.change_style(QEvent.Enter)
         if self.width() == 50 and self._tooltip_text:
             self.move_tooltip()
             self.tooltip.show()
 
-    # MOUSE LEAVE
-    # Event fired when the mouse leaves the BTN
-
     def leaveEvent(self, event):
         self.change_style(QEvent.Leave)
         self.tooltip.hide()
-
-    # MOUSE PRESS
-    # Event triggered when the left button is pressed
 
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
@@ -303,39 +234,26 @@ class PyLeftMenuButton(QPushButton):
             self.tooltip.hide()
             return self.clicked.emit()
 
-    # MOUSE RELEASED
-    # Event triggered after the mouse button is released
-
     def mouseReleaseEvent(self, event):
         if event.button() == Qt.LeftButton:
             self.change_style(QEvent.MouseButtonRelease)
             return self.released.emit()
 
-    # MOVE TOOLTIP
-
     def move_tooltip(self):
-        # GET MAIN WINDOW PARENT
         gp = self.mapToGlobal(QPoint(0, 0))
 
-        # SET WIDGET TO GET POSTION
-        # Return absolute position of widget inside app
         pos = self._parent.mapFromGlobal(gp)
 
-        # FORMAT POSITION
-        # Adjust tooltip position with offset
         pos_x = pos.x() + self.width() + 5
         pos_y = pos.y() + (self.width() - self.tooltip.height()) // 2
 
-        # SET POSITION TO WIDGET
-        # Move tooltip position
         self.tooltip.move(pos_x, pos_y)
 
 
 class _ToolTip(QLabel):
-    # TOOLTIP / LABEL StyleSheet
-    style_tooltip = """ 
-    QLabel {{		
-        background-color: {_dark_one};	
+    style_tooltip = """
+    QLabel {{
+        background-color: {_dark_one};
         color: {_text_foreground};
         padding-left: 10px;
         padding-right: 10px;
@@ -349,7 +267,6 @@ class _ToolTip(QLabel):
     def __init__(self, parent, tooltip, dark_one, context_color, text_foreground):
         QLabel.__init__(self)
 
-        # LABEL SETUP
         style = self.style_tooltip.format(
             _dark_one=dark_one, _context_color=context_color, _text_foreground=text_foreground
         )
@@ -360,7 +277,6 @@ class _ToolTip(QLabel):
         self.setText(tooltip)
         self.adjustSize()
 
-        # SET DROP SHADOW
         self.shadow = QGraphicsDropShadowEffect(self)
         self.shadow.setBlurRadius(30)
         self.shadow.setXOffset(0)

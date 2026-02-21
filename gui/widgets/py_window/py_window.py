@@ -12,20 +12,13 @@
 # https://doc.qt.io/qtforpython/licenses.html
 #
 
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QColor
+from PySide6.QtWidgets import QFrame, QGraphicsDropShadowEffect, QHBoxLayout
 
-# IMPORT PACKAGES AND MODULES
-
-
-# IMPORT QT CORE
-
-# IMPORT SETTINGS
 from gui.core.json_settings import Settings
-from qt_core import QColor, QFrame, QGraphicsDropShadowEffect, QHBoxLayout, Qt
 
-# IMPORT STYLES
 from .styles import Styles
-
-# PY WINDOW
 
 
 class PyWindow(QFrame):
@@ -82,37 +75,31 @@ class PyWindow(QFrame):
     def set_stylesheet(
         self, bg_color=None, border_radius=None, border_size=None, border_color=None, text_color=None, text_font=None
     ):
-        # CHECK BG COLOR
         if bg_color is not None:
             internal_bg_color = bg_color
         else:
             internal_bg_color = self.bg_color
 
-        # CHECK BORDER RADIUS
         if border_radius is not None:
             internal_border_radius = border_radius
         else:
             internal_border_radius = self.border_radius
 
-        # CHECK BORDER SIZE
         if border_size is not None:
             internal_border_size = border_size
         else:
             internal_border_size = self.border_size
 
-        # CHECK BORDER COLOR
         if text_color is not None:
             internal_text_color = text_color
         else:
             internal_text_color = self.text_color
 
-        # CHECK TEXT COLOR
         if border_color is not None:
             internal_border_color = border_color
         else:
             internal_border_color = self.border_color
 
-        # CHECK TEXT COLOR
         if text_font is not None:
             internal_text_font = text_font
         else:

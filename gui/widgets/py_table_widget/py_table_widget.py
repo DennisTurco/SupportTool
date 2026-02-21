@@ -12,10 +12,9 @@
 # https://doc.qt.io/qtforpython/licenses.html
 #
 
+from PySide6.QtWidgets import QTableWidget
 
-from qt_core import QTableWidget
-
-from .style import *
+from gui.widgets.py_table_widget.style import style
 
 
 class PyTableWidget(QTableWidget):

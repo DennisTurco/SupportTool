@@ -11,7 +11,8 @@
 # commercially, I recommend reading them on the official website:
 # https://doc.qt.io/qtforpython/licenses.html
 #
-from qt_core import QLineEdit
+
+from PySide6.QtWidgets import QLineEdit
 
 style = """
 QLineEdit {{

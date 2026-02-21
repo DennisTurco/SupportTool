@@ -11,7 +11,9 @@
 # commercially, I recommend reading them on the official website:
 # https://doc.qt.io/qtforpython/licenses.html
 #
-from qt_core import QFrame, QHBoxLayout, QLabel, QSizePolicy, QSpacerItem, Qt, QWidget
+
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QSizePolicy, QSpacerItem, QWidget
 
 
 class PyCredits(QWidget):
@@ -29,7 +31,6 @@ class PyCredits(QWidget):
         self._radius = radius
         self._padding = padding
 
-        # SETUP UI
         self.setup_ui()
 
     def setup_ui(self):

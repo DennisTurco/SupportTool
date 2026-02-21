@@ -12,8 +12,9 @@
 # https://doc.qt.io/qtforpython/licenses.html
 #
 
-
-from qt_core import Property, QCheckBox, QColor, QEasingCurve, QFont, QPainter, QPoint, QPropertyAnimation, QRect, Qt
+from PySide6.QtCore import Property, QEasingCurve, QPoint, QPropertyAnimation, QRect, Qt
+from PySide6.QtGui import QColor, QFont, QPainter
+from PySide6.QtWidgets import QCheckBox
 
 
 class PyToggle(QCheckBox):
@@ -49,7 +50,6 @@ class PyToggle(QCheckBox):
         self._position = pos
         self.update()
 
-    # START STOP ANIMATION
     def setup_animation(self, value):
         self.animation.stop()
         if value:
@@ -66,10 +66,8 @@ class PyToggle(QCheckBox):
         p.setRenderHint(QPainter.Antialiasing)
         p.setFont(QFont("Segoe UI", 9))
 
-        # SET PEN
         p.setPen(Qt.NoPen)
 
-        # DRAW RECT
         rect = QRect(0, 0, self.width(), self.height())
 
         if not self.isChecked():

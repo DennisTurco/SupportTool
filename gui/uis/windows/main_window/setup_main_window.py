@@ -12,14 +12,23 @@
 # https://doc.qt.io/qtforpython/licenses.html
 #
 
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QIcon
+from PySide6.QtSvgWidgets import QSvgWidget
+from PySide6.QtWidgets import QAbstractItemView, QHeaderView, QPushButton, QTableWidgetItem
 
 from gui.core.functions import Functions
 from gui.core.json_settings import Settings
 from gui.core.json_themes import Themes
 from gui.uis.windows.main_window.functions_main_window import MainFunctions
-from gui.widgets import PyCircularProgress, PyGrips, PyIconButton, PyLineEdit, PyPushButton, PySlider, PyToggle
+from gui.widgets.py_circular_progress.py_circular_progress import PyCircularProgress
+from gui.widgets.py_grips.py_grips import PyGrips
+from gui.widgets.py_icon_button.py_icon_button import PyIconButton
+from gui.widgets.py_line_edit.py_line_edit import PyLineEdit
+from gui.widgets.py_push_button.py_push_button import PyPushButton
+from gui.widgets.py_slider.py_slider import PySlider
 from gui.widgets.py_table_widget.py_table_widget import PyTableWidget
-from qt_core import QAbstractItemView, QHeaderView, QIcon, QPushButton, QSvgWidget, Qt, QTableWidgetItem
+from gui.widgets.py_toggle.py_toggle import PyToggle
 
 from .functions_main_window import UI_MainWindow
 
@@ -206,7 +215,6 @@ class SetupMainWindow:
         self.left_btn_2.setMaximumHeight(40)
         self.ui.left_column.menus.btn_2_layout.addWidget(self.left_btn_2)
 
-        # BTN 3 - Default QPushButton
         self.left_btn_3 = QPushButton("Default QPushButton")
         self.left_btn_3.setMaximumHeight(40)
         self.ui.left_column.menus.btn_3_layout.addWidget(self.left_btn_3)
@@ -350,7 +358,6 @@ class SetupMainWindow:
             is_active=True,
         )
 
-        # PUSH BUTTON 1
         self.push_button_1 = PyPushButton(
             text="Button Without Icon",
             radius=8,
@@ -361,7 +368,6 @@ class SetupMainWindow:
         )
         self.push_button_1.setMinimumHeight(40)
 
-        # PUSH BUTTON 2
         self.push_button_2 = PyPushButton(
             text="Button With Icon",
             radius=8,
@@ -374,7 +380,6 @@ class SetupMainWindow:
         self.push_button_2.setMinimumHeight(40)
         self.push_button_2.setIcon(self.icon_2)
 
-        # PY LINE EDIT
         self.line_edit = PyLineEdit(
             text="",
             place_holder_text="Place holder text",
@@ -396,7 +401,6 @@ class SetupMainWindow:
             active_color=self.themes["app_color"]["context_color"],
         )
 
-        # TABLE WIDGETS
         self.table_widget = PyTableWidget(
             radius=8,
             color=self.themes["app_color"]["text_foreground"],

@@ -12,7 +12,9 @@
 # https://doc.qt.io/qtforpython/licenses.html
 #
 
-from qt_core import QCoreApplication, QFont, QLabel, QMetaObject, QSize, QStackedWidget, Qt, QVBoxLayout, QWidget
+from PySide6.QtCore import QCoreApplication, QMetaObject, QSize, Qt
+from PySide6.QtGui import QFont
+from PySide6.QtWidgets import QLabel, QStackedWidget, QVBoxLayout, QWidget
 
 
 class Ui_RightColumn:

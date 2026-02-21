@@ -11,7 +11,10 @@
 # commercially, I recommend reading them on the official website:
 # https://doc.qt.io/qtforpython/licenses.html
 #
-from qt_core import QLabel, QPainter, QPixmap, Qt, QVBoxLayout, QWidget
+
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QPainter, QPixmap
+from PySide6.QtWidgets import QLabel, QVBoxLayout, QWidget
 
 
 class PyIcon(QWidget):

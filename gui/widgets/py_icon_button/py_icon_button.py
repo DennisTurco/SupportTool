@@ -12,24 +12,9 @@
 # https://doc.qt.io/qtforpython/licenses.html
 #
 
-
-# IMPORT QT CORE
-
-from qt_core import (
-    QBrush,
-    QColor,
-    QEvent,
-    QGraphicsDropShadowEffect,
-    QLabel,
-    QPainter,
-    QPixmap,
-    QPoint,
-    QPushButton,
-    QRect,
-    Qt,
-)
-
-# PY TITLE BUTTON
+from PySide6.QtCore import QEvent, QPoint, QRect, Qt
+from PySide6.QtGui import QBrush, QColor, QPainter, QPixmap
+from PySide6.QtWidgets import QGraphicsDropShadowEffect, QLabel, QPushButton
 
 
 class PyIconButton(QPushButton):
@@ -58,12 +43,10 @@ class PyIconButton(QPushButton):
     ):
         super().__init__()
 
-        # SET DEFAULT PARAMETERS
         self.setFixedSize(width, height)
         self.setCursor(Qt.PointingHandCursor)
         self.setObjectName(btn_id)
 
-        # PROPERTIES
         self._bg_color = bg_color
         self._bg_color_hover = bg_color_hover
         self._bg_color_pressed = bg_color_pressed
@@ -74,61 +57,44 @@ class PyIconButton(QPushButton):
         self._context_color = context_color
         self._top_margin = top_margin
         self._is_active = is_active
-        # Set Parameters
+
         self._set_bg_color = bg_color
         self._set_icon_path = icon_path
         self._set_icon_color = icon_color
         self._set_border_radius = radius
-        # Parent
+
         self._parent = parent
         self._app_parent = app_parent
 
-        # TOOLTIP
         self._tooltip_text = tooltip_text
         self._tooltip = _ToolTip(app_parent, tooltip_text, dark_one, text_foreground)
         self._tooltip.hide()
-
-    # SET ACTIVE MENU
 
     def set_active(self, is_active):
         self._is_active = is_active
         self.repaint()
 
-    # RETURN IF IS ACTIVE MENU
-
     def is_active(self):
         return self._is_active
 
-    # PAINT EVENT
-    # painting the button and the icon
-
     def paintEvent(self, event):
-        # PAINTER
         paint = QPainter()
         paint.begin(self)
         paint.setRenderHint(QPainter.RenderHint.Antialiasing)
 
         if self._is_active:
-            # BRUSH
             brush = QBrush(QColor(self._context_color))
         else:
-            # BRUSH
             brush = QBrush(QColor(self._set_bg_color))
 
-        # CREATE RECTANGLE
         rect = QRect(0, 0, self.width(), self.height())
         paint.setPen(Qt.NoPen)
         paint.setBrush(brush)
         paint.drawRoundedRect(rect, self._set_border_radius, self._set_border_radius)
 
-        # DRAW ICONS
         self.icon_paint(paint, self._set_icon_path, rect)
 
-        # END PAINTER
         paint.end()
-
-    # CHANGE STYLES
-    # Functions with custom styles
 
     def change_style(self, event):
         if event == QEvent.Enter:
@@ -148,43 +114,26 @@ class PyIconButton(QPushButton):
             self._set_icon_color = self._icon_color_hover
             self.repaint()
 
-    # MOUSE OVER
-    # Event triggered when the mouse is over the BTN
-
     def enterEvent(self, event):
         self.change_style(QEvent.Enter)
         self.move_tooltip()
         self._tooltip.show()
-
-    # MOUSE LEAVE
-    # Event fired when the mouse leaves the BTN
 
     def leaveEvent(self, event):
         self.change_style(QEvent.Leave)
         self.move_tooltip()
         self._tooltip.hide()
 
-    # MOUSE PRESS
-    # Event triggered when the left button is pressed
-
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
             self.change_style(QEvent.MouseButtonPress)
-            # SET FOCUS
             self.setFocus()
-            # EMIT SIGNAL
             return self.clicked.emit()
-
-    # MOUSE RELEASED
-    # Event triggered after the mouse button is released
 
     def mouseReleaseEvent(self, event):
         if event.button() == Qt.LeftButton:
             self.change_style(QEvent.MouseButtonRelease)
-            # EMIT SIGNAL
             return self.released.emit()
-
-    # DRAW ICON WITH COLORS
 
     def icon_paint(self, qp, image, rect):
         icon = QPixmap(image)
@@ -197,40 +146,25 @@ class PyIconButton(QPushButton):
         qp.drawPixmap((rect.width() - icon.width()) / 2, (rect.height() - icon.height()) / 2, icon)
         painter.end()
 
-    # SET ICON
-
     def set_icon(self, icon_path):
         self._set_icon_path = icon_path
         self.repaint()
 
-    # MOVE TOOLTIP
-
     def move_tooltip(self):
-        # GET MAIN WINDOW PARENT
         gp = self.mapToGlobal(QPoint(0, 0))
 
-        # SET WIDGET TO GET POSTION
-        # Return absolute position of widget inside app
         pos = self._parent.mapFromGlobal(gp)
 
-        # FORMAT POSITION
-        # Adjust tooltip position with offset
         pos_x = (pos.x() - (self._tooltip.width() // 2)) + (self.width() // 2)
         pos_y = pos.y() - self._top_margin
 
-        # SET POSITION TO WIDGET
-        # Move tooltip position
         self._tooltip.move(pos_x, pos_y)
 
 
-# TOOLTIP
-
-
 class _ToolTip(QLabel):
-    # TOOLTIP / LABEL StyleSheet
-    style_tooltip = """ 
-    QLabel {{		
-        background-color: {_dark_one};	
+    style_tooltip = """
+    QLabel {{
+        background-color: {_dark_one};
         color: {_text_foreground};
         padding-left: 10px;
         padding-right: 10px;
@@ -243,7 +177,6 @@ class _ToolTip(QLabel):
     def __init__(self, parent, tooltip, dark_one, text_foreground):
         QLabel.__init__(self)
 
-        # LABEL SETUP
         style = self.style_tooltip.format(_dark_one=dark_one, _text_foreground=text_foreground)
         self.setObjectName("label_tooltip")
         self.setStyleSheet(style)
@@ -252,7 +185,6 @@ class _ToolTip(QLabel):
         self.setText(tooltip)
         self.adjustSize()
 
-        # SET DROP SHADOW
         self.shadow = QGraphicsDropShadowEffect(self)
         self.shadow.setBlurRadius(30)
         self.shadow.setXOffset(0)

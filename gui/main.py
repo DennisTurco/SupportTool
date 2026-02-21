@@ -13,12 +13,13 @@
 #
 import os
 
+from PySide6.QtWidgets import QMainWindow
+
 from gui.core.functions import Functions
 from gui.core.json_settings import Settings
-from gui.uis.windows.main_window import UI_MainWindow
 from gui.uis.windows.main_window.functions_main_window import MainFunctions
 from gui.uis.windows.main_window.setup_main_window import SetupMainWindow
-from qt_core import QMainWindow
+from gui.uis.windows.main_window.ui_main import UI_MainWindow
 
 # ADJUST QT FONT DPI FOR HIGHT SCALE AN 4K MONITOR
 os.environ["QT_FONT_DPI"] = "96"

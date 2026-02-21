@@ -11,14 +11,18 @@
 # commercially, I recommend reading them on the official website:
 # https://doc.qt.io/qtforpython/licenses.html
 #
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QVBoxLayout, QWidget
+
 from gui.core.functions import Functions
 from gui.core.json_settings import Settings
 from gui.core.json_themes import Themes
 from gui.uis.columns.ui_right_column import Ui_RightColumn
 from gui.uis.pages.ui_main_pages import Ui_MainPages
-from gui.widgets import PyLeftColumn, PyLeftMenu, PyTitleBar, PyWindow
 from gui.widgets.py_credits_bar.py_credits import PyCredits
-from qt_core import QFrame, QHBoxLayout, QVBoxLayout, QWidget
+from gui.widgets.py_left_column.py_left_column import PyLeftColumn
+from gui.widgets.py_left_menu.py_left_menu import PyLeftMenu
+from gui.widgets.py_title_bar.py_title_bar import PyTitleBar
+from gui.widgets.py_window.py_window import PyWindow
 
 
 class UI_MainWindow:

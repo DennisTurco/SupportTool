@@ -11,8 +11,10 @@
 # commercially, I recommend reading them on the official website:
 # https://doc.qt.io/qtforpython/licenses.html
 #
+from PySide6.QtCore import Qt, Signal
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QVBoxLayout, QWidget
+
 from gui.uis.columns.ui_left_column import Ui_LeftColumn
-from qt_core import QFrame, QHBoxLayout, QLabel, Qt, QVBoxLayout, QWidget, Signal
 
 from .py_icon import PyIcon
 from .py_left_button import PyLeftButton

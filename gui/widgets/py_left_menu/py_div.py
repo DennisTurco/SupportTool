@@ -11,7 +11,7 @@
 # commercially, I recommend reading them on the official website:
 # https://doc.qt.io/qtforpython/licenses.html
 #
-from qt_core import QFrame, QHBoxLayout, QWidget
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QWidget
 
 
 class PyDiv(QWidget):

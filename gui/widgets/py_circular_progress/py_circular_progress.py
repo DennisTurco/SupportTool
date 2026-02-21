@@ -11,7 +11,10 @@
 # commercially, I recommend reading them on the official website:
 # https://doc.qt.io/qtforpython/licenses.html
 #
-from qt_core import QColor, QFont, QGraphicsDropShadowEffect, QPainter, QPen, QRect, Qt, QWidget
+
+from PySide6.QtCore import QRect
+from PySide6.QtGui import QColor, QFont, QPainter, QPen, Qt
+from PySide6.QtWidgets import QGraphicsDropShadowEffect, QWidget
 
 
 class PyCircularProgress(QWidget):

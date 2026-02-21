@@ -11,15 +11,16 @@
 # commercially, I recommend reading them on the official website:
 # https://doc.qt.io/qtforpython/licenses.html
 #
+from PySide6.QtCore import QEasingCurve, QPropertyAnimation, Qt, Signal
+from PySide6.QtWidgets import QFrame, QPushButton, QVBoxLayout, QWidget
+
 from gui.core.functions import Functions
-from qt_core import QEasingCurve, QFrame, QPropertyAnimation, QPushButton, Qt, QVBoxLayout, QWidget, Signal
 
 from .py_div import PyDiv
 from .py_left_menu_button import PyLeftMenuButton
 
 
 class PyLeftMenu(QWidget):
-    # SIGNALS
     clicked = Signal(object)
     released = Signal(object)
 
@@ -133,7 +134,6 @@ class PyLeftMenu(QWidget):
                 self.menu.clicked.connect(self.btn_clicked)
                 self.menu.released.connect(self.btn_released)
 
-                # ADD TO LAYOUT
                 if _show_top:
                     self.top_layout.addWidget(self.menu)
                 else:

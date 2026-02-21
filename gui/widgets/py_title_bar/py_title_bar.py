@@ -12,9 +12,13 @@
 # https://doc.qt.io/qtforpython/licenses.html
 #
 
+from PySide6.QtCore import QSize, Qt, Signal
+from PySide6.QtGui import QCursor
+from PySide6.QtSvgWidgets import QSvgWidget
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QVBoxLayout, QWidget
+
 from gui.core.functions import Functions
 from gui.core.json_settings import Settings
-from qt_core import QCursor, QFrame, QHBoxLayout, QLabel, QSize, QSvgWidget, Qt, QVBoxLayout, QWidget, Signal
 
 from .py_div import PyDiv
 from .py_title_button import PyTitleButton

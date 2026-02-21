@@ -12,21 +12,9 @@
 # https://doc.qt.io/qtforpython/licenses.html
 #
 
-from qt_core import (
-    QCoreApplication,
-    QFont,
-    QFrame,
-    QHBoxLayout,
-    QLabel,
-    QMetaObject,
-    QRect,
-    QScrollArea,
-    QSize,
-    QStackedWidget,
-    Qt,
-    QVBoxLayout,
-    QWidget,
-)
+from PySide6.QtCore import QCoreApplication, QMetaObject, QRect, QSize, Qt
+from PySide6.QtGui import QFont
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QScrollArea, QStackedWidget, QVBoxLayout, QWidget
 
 
 class Ui_MainPages:
@@ -178,7 +166,8 @@ class Ui_MainPages:
             QCoreApplication.translate(
                 "MainPages",
                 "Here will be all the custom widgets, they will be added over time on this page.\n"
-                "I will try to always record a new tutorial when adding a new Widget and updating the project on Patreon before launching on GitHub and GitHub after the public release.",
+                "I will try to always record a new tutorial when adding a new Widget and updating the "
+                + "project on Patreon before launching on GitHub and GitHub after the public release.",
                 None,
             )
         )

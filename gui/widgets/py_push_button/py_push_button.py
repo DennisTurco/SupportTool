@@ -12,8 +12,8 @@
 # https://doc.qt.io/qtforpython/licenses.html
 #
 
-
-from qt_core import QPushButton, Qt
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QPushButton
 
 style = """
 QPushButton {{
@@ -31,8 +31,6 @@ QPushButton:pressed {{
 	background-color: {_bg_color_pressed};
 }}
 """
-
-# PY PUSH BUTTON
 
 
 class PyPushButton(QPushButton):
